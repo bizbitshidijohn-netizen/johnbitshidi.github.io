@@ -82,5 +82,35 @@ footer{text-align:center;padding:35px 20px;background:#050b13;color:#b9c8d8}
 <p>© 2026 John Bitshidi TSHIMANGA</p>
 <p>Merci pour votre visite. À très bientôt !</p>
 </footer>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+const SUPABASE_URL = "https://ipivglzyzxnqalwgyfni.supabase.co";
+
+const SUPABASE_KEY = "sb_publishable_uOQzRQ9D6nSg123Htud6Zw_AOzykgfa";
+
+const supabase = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+async function chargerProfil() {
+
+    const { data, error } = await supabase
+        .from("profile")
+        .select("*")
+        .limit(1)
+        .single();
+
+    if (error) {
+        console.error("Erreur Supabase :", error);
+        return;
+    }
+
+    console.log("Profil chargé :", data);
+}
+
+chargerProfil();
+</script>
 </body>
 </html>
